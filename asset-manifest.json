@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/COLOR-GAME/static/css/main.6ddecccc.chunk.css",
+    "main.js": "/COLOR-GAME/static/js/main.ab616a25.chunk.js",
+    "main.js.map": "/COLOR-GAME/static/js/main.ab616a25.chunk.js.map",
+    "runtime-main.js": "/COLOR-GAME/static/js/runtime-main.d2667cc7.js",
+    "runtime-main.js.map": "/COLOR-GAME/static/js/runtime-main.d2667cc7.js.map",
+    "static/css/2.e985627f.chunk.css": "/COLOR-GAME/static/css/2.e985627f.chunk.css",
+    "static/js/2.a5b7bb2a.chunk.js": "/COLOR-GAME/static/js/2.a5b7bb2a.chunk.js",
+    "static/js/2.a5b7bb2a.chunk.js.map": "/COLOR-GAME/static/js/2.a5b7bb2a.chunk.js.map",
+    "static/js/3.b97366f4.chunk.js": "/COLOR-GAME/static/js/3.b97366f4.chunk.js",
+    "static/js/3.b97366f4.chunk.js.map": "/COLOR-GAME/static/js/3.b97366f4.chunk.js.map",
+    "index.html": "/COLOR-GAME/index.html",
+    "static/css/2.e985627f.chunk.css.map": "/COLOR-GAME/static/css/2.e985627f.chunk.css.map",
+    "static/css/main.6ddecccc.chunk.css.map": "/COLOR-GAME/static/css/main.6ddecccc.chunk.css.map",
+    "static/js/2.a5b7bb2a.chunk.js.LICENSE.txt": "/COLOR-GAME/static/js/2.a5b7bb2a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d2667cc7.js",
+    "static/css/2.e985627f.chunk.css",
+    "static/js/2.a5b7bb2a.chunk.js",
+    "static/css/main.6ddecccc.chunk.css",
+    "static/js/main.ab616a25.chunk.js"
+  ]
+}
