@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.button{
+    padding: 10px 20px;
+    border:  none ;
+    border-radius: 6px;
+    margin: 5px;
+    font-size:  30px;
+    font-weight: 700px;
+    cursor: pointer;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
