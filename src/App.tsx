@@ -1,46 +1,8 @@
+/* eslint-disable react/jsx-curly-newline */
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import 'flexboxgrid';
 import { v4 as uuidv4 } from 'uuid';
-
-// const colorsArray = [
-//   {
-//     id: uuidv4(),
-//     color: 'red',
-//     title: 'yellow',
-//     show: true,
-//   },
-//   {
-//     id: uuidv4(),
-//     color: 'green',
-//     title: 'yellow',
-//     show: false,
-//   },
-//   {
-//     id: uuidv4(),
-//     color: 'blue',
-//     title: 'red',
-//     show: false,
-//   },
-//   {
-//     id: uuidv4(),
-//     color: 'red',
-//     title: 'yellow',
-//     show: false,
-//   },
-//   {
-//     id: uuidv4(),
-//     color: 'green',
-//     title: 'blue',
-//     show: false,
-//   },
-//   {
-//     id: uuidv4(),
-//     color: 'blue',
-//     title: 'green',
-//     show: false,
-//   },
-// ];
 
 type Color = {
   id: string;
@@ -56,40 +18,71 @@ const App = () => {
   const [clickedColorArr, setClickedColorArr] = useState(['']);
   const [shownTitle, setShowTitle] = useState('');
   const [shownColor, setShowColor] = useState('');
-  const [count, setCount] = useState(-1);
-  const [results, setResults] = useState(false);
-  const [start, setStart] = useState(false);
+  const [count, setCount] = useState(-15);
+  const [whatWeGonnaSee, setWhatWeGonnaSee] = useState({
+    startButton: true,
+    gameOptions: false,
+    gameOptions2: false,
+    withKeyboard: false,
+    withButtons: false,
+    results: false,
+    startGame: false,
+  });
+
   const [correctColors, setCorrectColors] = useState(0);
+  const [keyPress, setKeyPress] = useState('');
+  const [timeOut, setTimeOut] = useState(2000);
+  const [timer, setTimer] = useState(-3);
   const isInitialMount = useRef(true);
 
   useEffect(() => {
     let counter = 0;
     for (let i = 0; i < colors.length; i++) {
-      if (colors[i].color === clickedColorArr[i]) {
+      if (
+        colors[i].color.substring(0, 1).toLowerCase() ===
+        clickedColorArr[i].substring(0, 1).toLowerCase()
+      ) {
         counter += 1;
       }
     }
     setCorrectColors(counter);
-    console.log(colors);
-    console.log(clickedColorArr);
-  }, [results]);
+  }, [whatWeGonnaSee.results]);
+
+  useEffect(() => {
+    if (!whatWeGonnaSee.withKeyboard) {
+      return;
+    }
+    if (keyPress) {
+      const copyColorArr = [...clickedColorArr];
+      copyColorArr[count] = keyPress;
+      setClickedColorArr(copyColorArr);
+    }
+  }, [keyPress]);
 
   useEffect(() => {
     if (isInitialMount.current) {
+      // @ts-ignore
+      document.body.addEventListener('keydown', (e) => setKeyPress(e.key));
       isInitialMount.current = false;
       return;
     }
     if (count < colors.length) {
       setShowTitle(colors[count].title);
       setShowColor(colors[count].color);
+      setKeyPress('');
       setTimeout(() => {
         setCount(count + 1);
-      }, 2000);
+      }, timeOut);
     } else {
-      // setTimeout(() => {
-      setResults(true);
-      setStart(false);
-      // }, 2000);
+      setWhatWeGonnaSee({
+        startButton: false,
+        gameOptions: false,
+        gameOptions2: false,
+        withKeyboard: false,
+        withButtons: false,
+        results: true,
+        startGame: false,
+      });
     }
   }, [count]);
 
@@ -99,7 +92,7 @@ const App = () => {
     for (let i = 0; i < size; i++) {
       const randomNumber = Math.floor(Math.random() * 4);
       const randomNumber2 = Math.floor(Math.random() * 4);
-      copyColorsClicked.push('majakaja');
+      copyColorsClicked.push(`${i}`);
       copyColors.push({
         id: uuidv4(),
         color: colorArr[randomNumber],
@@ -107,11 +100,17 @@ const App = () => {
         show: false,
       });
     }
-    setStart(true);
+    setWhatWeGonnaSee({
+      startButton: false,
+      gameOptions: false,
+      gameOptions2: true,
+      withKeyboard: false,
+      withButtons: false,
+      results: false,
+      startGame: false,
+    });
     setClickedColorArr(copyColorsClicked);
     setColors(copyColors);
-    setCount(0);
-    setResults(false);
   };
 
   const changeColorArr = (color: string) => {
@@ -121,55 +120,235 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      {!start ? (
-        <>
-          {counterArr.map((counter) => (
-            <button
-              key={counter}
-              type="button"
-              className="button"
-              onClick={() => GenerateColorArray(counter)}
-            >
-              {counter} color game
-            </button>
-          ))}
-        </>
-      ) : (
-        <>
-          {colorArr.map((color) => (
-            <button
-              key={color}
-              className="button"
-              type="button"
-              // style={{ backgroundColor: color }}
-              onClick={() => changeColorArr(color)}
-            >
-              {color}
-            </button>
-          ))}
-        </>
-      )}
-      {results ? (
-        <div>
-          <h2 style={{ fontSize: '100px' }}>
-            pareizi atminēji {correctColors} krāsas
-          </h2>
+    <>
+      <div className="background-color" />
+      <div className="container header">
+        <div className="row middle-xs center-xs">
+          <div className="col-xs-8 col-xs-offset-2">
+            <h1 className="header__heading">Welcome to Color game</h1>
+          </div>
+          <div className="col-xs-2">
+            {/* <div className="header__button-wrapper">
+              <button type="button" className="header__button">
+                LV
+              </button>
+              <button type="button" className="header__button">
+                EN
+              </button>
+            </div> */}
+          </div>
         </div>
-      ) : (
-        <div>
-          <h1 style={{ color: shownColor, fontSize: '200px' }}>{shownTitle}</h1>
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12">
+            {!whatWeGonnaSee.startGame ? (
+              <div className="playArea__before">
+                {whatWeGonnaSee.startButton && (
+                  <button
+                    type="button"
+                    className="start__button"
+                    onClick={() =>
+                      setWhatWeGonnaSee({
+                        startButton: false,
+                        gameOptions: true,
+                        gameOptions2: false,
+                        withKeyboard: false,
+                        withButtons: false,
+                        results: false,
+                        startGame: false,
+                      })
+                    }
+                  >
+                    START
+                  </button>
+                )}
+                {whatWeGonnaSee.gameOptions && (
+                  <>
+                    <h1 className="gameOption__header">Select game size</h1>
+                    {counterArr.map((counter) => (
+                      <button
+                        key={counter}
+                        type="button"
+                        className="button"
+                        onClick={() => GenerateColorArray(counter)}
+                      >
+                        {counter} color game
+                      </button>
+                    ))}
+                  </>
+                )}
+                {whatWeGonnaSee.gameOptions2 && (
+                  <>
+                    <h1 className="gameOption__header">
+                      Select keyboard or mouse to play with
+                    </h1>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => {
+                        setCount(0);
+
+                        setWhatWeGonnaSee({
+                          startButton: false,
+                          gameOptions: false,
+                          gameOptions2: false,
+                          withKeyboard: false,
+                          withButtons: true,
+                          results: false,
+                          startGame: true,
+                        });
+                      }}
+                    >
+                      mouse
+                    </button>
+                    <button
+                      type="button"
+                      className="button"
+                      onClick={() => {
+                        setCount(0);
+                        setWhatWeGonnaSee({
+                          startButton: false,
+                          gameOptions: false,
+                          gameOptions2: false,
+                          withKeyboard: true,
+                          withButtons: false,
+                          results: false,
+                          startGame: true,
+                        });
+                      }}
+                    >
+                      keyboard
+                    </button>
+
+                    <span style={{ color: 'red' }} className="heading2">
+                      press r = red
+                    </span>
+                    <span style={{ color: 'blue' }} className="heading2">
+                      press b = blue
+                    </span>
+                    <span style={{ color: 'green' }} className="heading2">
+                      press g = green
+                    </span>
+                    <span style={{ color: 'yellow' }} className="heading2">
+                      press y = yellow
+                    </span>
+                  </>
+                )}
+                {whatWeGonnaSee.results && (
+                  <div>
+                    <h2 className="result__header">
+                      {!correctColors && 'sorry... 0 points'}
+                      {correctColors === 1 && 'you got 1 point'}
+                      {correctColors > 1 && `you got ${correctColors} points`}
+                    </h2>
+                    <div className="result__button-wrapper">
+                      <button
+                        type="button"
+                        className="button button--result"
+                        onClick={() => {
+                          setWhatWeGonnaSee({
+                            startButton: true,
+                            gameOptions: false,
+                            gameOptions2: false,
+                            withKeyboard: false,
+                            withButtons: false,
+                            results: false,
+                            startGame: false,
+                          });
+                        }}
+                      >
+                        play again!
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="playArea__before playArea">
+                {whatWeGonnaSee.withButtons ? (
+                  <div>
+                    {colorArr.map((color) => (
+                      <button
+                        key={color}
+                        className="button button--game"
+                        type="button"
+                        onClick={() => changeColorArr(color)}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                    <div className="shownColor-wrapper">
+                      <span
+                        className="shownColor"
+                        style={{ color: shownColor }}
+                      >
+                        {shownTitle}
+                      </span>
+                      <div className="shownColor__footer">
+                        <span>
+                          color {count + 1}/{clickedColorArr.length}
+                        </span>
+                        <button
+                          type="button"
+                          className="button button--result"
+                          onClick={() => {
+                            // setCount(-1000);
+                            setWhatWeGonnaSee({
+                              startButton: true,
+                              gameOptions: false,
+                              gameOptions2: false,
+                              withKeyboard: false,
+                              withButtons: false,
+                              results: false,
+                              startGame: false,
+                            });
+                          }}
+                        >
+                          end game
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="shownColor-wrapper">
+                    <p>
+                      you pressed: <span className="keyPress"> {keyPress}</span>
+                    </p>
+                    <span className="shownColor" style={{ color: shownColor }}>
+                      {shownTitle}
+                    </span>
+                    <div className="shownColor__footer">
+                      <span>
+                        color {count + 1}/{clickedColorArr.length}
+                      </span>
+                      <button
+                        type="button"
+                        className="button button--result"
+                        onClick={() =>
+                          setWhatWeGonnaSee({
+                            startButton: true,
+                            gameOptions: false,
+                            gameOptions2: false,
+                            withKeyboard: false,
+                            withButtons: false,
+                            results: false,
+                            startGame: false,
+                          })
+                        }
+                      >
+                        end game
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      )}
-      {/* {colors.map(
-        (color: Color) =>
-          color.show && (
-            <h1 key={color.id} style={{ color: color.color }}>
-              {color.title}{' '}
-            </h1>
-          )
-      )} */}
-    </div>
+      </div>
+    </>
   );
 };
 
