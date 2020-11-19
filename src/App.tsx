@@ -32,8 +32,9 @@ const App = () => {
   const [correctColors, setCorrectColors] = useState(0);
   const [keyPress, setKeyPress] = useState('');
   const [timeOut, setTimeOut] = useState(2000);
-  const [timer, setTimer] = useState(-3);
+  // const [timer, setTimer] = useState(-3);
   const isInitialMount = useRef(true);
+  // const countingSteps = useRef(true);
 
   useEffect(() => {
     let counter = 0;
@@ -59,6 +60,7 @@ const App = () => {
     }
   }, [keyPress]);
 
+  // console.log(whatWeGonnaSee);
   useEffect(() => {
     if (isInitialMount.current) {
       // @ts-ignore
@@ -66,7 +68,12 @@ const App = () => {
       isInitialMount.current = false;
       return;
     }
+    if (!whatWeGonnaSee.startGame) {
+      return;
+    }
+
     if (count < colors.length) {
+      // console.log(count, 'gii');
       setShowTitle(colors[count].title);
       setShowColor(colors[count].color);
       setKeyPress('');
@@ -84,7 +91,7 @@ const App = () => {
         startGame: false,
       });
     }
-  }, [count]);
+  }, [count, whatWeGonnaSee.startGame]);
 
   const GenerateColorArray = (size: number) => {
     const copyColors = [];
@@ -189,7 +196,6 @@ const App = () => {
                       className="button"
                       onClick={() => {
                         setCount(0);
-
                         setWhatWeGonnaSee({
                           startButton: false,
                           gameOptions: false,
