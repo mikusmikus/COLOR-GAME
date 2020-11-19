@@ -300,16 +300,18 @@ const App = () => {
                           type="button"
                           className="button button--result"
                           onClick={() => {
+                            setTimeout(() => {
+                              setWhatWeGonnaSee({
+                                startButton: true,
+                                gameOptions: false,
+                                gameOptions2: false,
+                                withKeyboard: false,
+                                withButtons: false,
+                                results: false,
+                                startGame: false,
+                              });
+                            }, 300);
                             // setCount(-1000);
-                            setWhatWeGonnaSee({
-                              startButton: true,
-                              gameOptions: false,
-                              gameOptions2: false,
-                              withKeyboard: false,
-                              withButtons: false,
-                              results: false,
-                              startGame: false,
-                            });
                           }}
                         >
                           end game
@@ -332,17 +334,19 @@ const App = () => {
                       <button
                         type="button"
                         className="button button--result"
-                        onClick={() =>
-                          setWhatWeGonnaSee({
-                            startButton: true,
-                            gameOptions: false,
-                            gameOptions2: false,
-                            withKeyboard: false,
-                            withButtons: false,
-                            results: false,
-                            startGame: false,
-                          })
-                        }
+                        onClick={() => {
+                          setTimeout(() => {
+                            setWhatWeGonnaSee({
+                              startButton: true,
+                              gameOptions: false,
+                              gameOptions2: false,
+                              withKeyboard: false,
+                              withButtons: false,
+                              results: false,
+                              startGame: false,
+                            });
+                          }, 300);
+                        }}
                       >
                         end game
                       </button>
