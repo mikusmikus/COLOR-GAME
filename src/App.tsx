@@ -12,7 +12,6 @@ import Timer from './components/timer/timer';
 const colorArr = ['red', 'green', 'yellow', 'blue'];
 const counterArr = [10, 20, 40];
 
-
 type Color = {
   id: string;
   color: string;
@@ -289,66 +288,8 @@ const App = () => {
               </>
             ) : (
               <div className="playArea">
-                {whatWeSee.withButtons ? (
-                  <div>
-                    <div className="shownColor-wrapper">
-                      <div className="shownColor__footer">
-                        <span>
-                          color {count + 1}/{clickedColorArr.length}
-                        </span>
-                        <Button
-                          label="end game"
-                          className="button button--result"
-                          buttonClickHandler={() => {
-                            setTimeout(() => {
-                              setWhatWeSee({
-                                ...whatWeSee,
-                                startButton: true,
-                                withButtons: false,
-                                startGame: false,
-                              });
-                            }, 300);
-                          }}
-                        />
-                      </div>
-                      <span
-                        className="shownColor"
-                        style={{ color: shownColor }}
-                      >
-                        {shownTitle}
-                      </span>
-                      <Timer
-                        timeOut={timeOut}
-                        shownColor={shownColor}
-                      />
-                    </div>
-                    {colorArr.map((color) => (
-                      <Button
-                        key={color}
-                        label={color}
-                        className="button button--game"
-                        buttonClickHandler={() => {
-                          changeColorArr(color);
-                        }}
-                      />
-                    ))}
-                  </div>
-                ) : (
+                <div>
                   <div className="shownColor-wrapper">
-                    <p>
-                      you pressed:{' '}
-                      <span className="keyPress" style={{ color: shownColor }}>
-                        {' '}
-                        {keyPress}
-                      </span>
-                    </p>
-                    <span className="shownColor" style={{ color: shownColor }}>
-                      {shownTitle}
-                    </span>
-                    <Timer
-                      timeOut={timeOut}
-                      shownColor={shownColor}
-                    />
                     <div className="shownColor__footer">
                       <span>
                         color {count + 1}/{clickedColorArr.length}
@@ -368,8 +309,34 @@ const App = () => {
                         }}
                       />
                     </div>
+                    <span className="shownColor" style={{ color: shownColor }}>
+                      {shownTitle}
+                    </span>
+                    <Timer timeOut={timeOut} shownColor={shownColor} />
                   </div>
-                )}
+                  {whatWeSee.withButtons ? (
+                    <>
+                      {colorArr.map((color) => (
+                        <Button
+                          key={color}
+                          label={color}
+                          className="button button--game"
+                          buttonClickHandler={() => {
+                            changeColorArr(color);
+                          }}
+                        />
+                      ))}
+                    </>
+                  ) : (
+                    <p>
+                      you pressed:{' '}
+                      <span className="keyPress" style={{ color: shownColor }}>
+                        {' '}
+                        {keyPress}
+                      </span>
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </div>

@@ -30,8 +30,8 @@
 
 .playArea{
     position: relative;
-    width: 550px;
-    height: 500px;
+    min-width: 550px;
+    min-height: 500px;
     /* background-color: rgb(255, 255, 255); */
     margin: 0 auto;
     margin-top: 50px;
@@ -145,9 +145,6 @@
 
     @keyframes gogogo {
 
-        /* 50% {
-            transform: scale(1.5);
-        } */
         80% {
             transform: scale(0.7);
         }
