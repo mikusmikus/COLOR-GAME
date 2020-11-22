@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/COLOR-GAME/static/css/main.6eedf876.chunk.css",
+    "main.css": "/COLOR-GAME/static/css/main.ba0a13ac.chunk.css",
     "main.js": "/COLOR-GAME/static/js/main.a11fdef6.chunk.js",
     "main.js.map": "/COLOR-GAME/static/js/main.a11fdef6.chunk.js.map",
     "runtime-main.js": "/COLOR-GAME/static/js/runtime-main.e09fe60e.js",
@@ -12,7 +12,7 @@
     "static/js/3.1b87a7e6.chunk.js.map": "/COLOR-GAME/static/js/3.1b87a7e6.chunk.js.map",
     "index.html": "/COLOR-GAME/index.html",
     "static/css/2.12003753.chunk.css.map": "/COLOR-GAME/static/css/2.12003753.chunk.css.map",
-    "static/css/main.6eedf876.chunk.css.map": "/COLOR-GAME/static/css/main.6eedf876.chunk.css.map",
+    "static/css/main.ba0a13ac.chunk.css.map": "/COLOR-GAME/static/css/main.ba0a13ac.chunk.css.map",
     "static/js/2.7c32690d.chunk.js.LICENSE.txt": "/COLOR-GAME/static/js/2.7c32690d.chunk.js.LICENSE.txt",
     "static/media/simple.dafe14e1.wav": "/COLOR-GAME/static/media/simple.dafe14e1.wav"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.e09fe60e.js",
     "static/css/2.12003753.chunk.css",
     "static/js/2.7c32690d.chunk.js",
-    "static/css/main.6eedf876.chunk.css",
+    "static/css/main.ba0a13ac.chunk.css",
     "static/js/main.a11fdef6.chunk.js"
   ]
 }
