@@ -30,8 +30,8 @@
 
 .playArea{
     position: relative;
-    min-width: 550px;
-    min-height: 500px;
+    max-width: 550px;
+    max-height: 500px;
     /* background-color: rgb(255, 255, 255); */
     margin: 0 auto;
     margin-top: 50px;
@@ -93,7 +93,7 @@
 }
 
 .animation{
-    position: absolute;
+    position: relative;
     color: red;
     font-size: 100px;
     z-index: 999;
@@ -118,7 +118,6 @@
     .playArea{
         width: 100%;
         margin-top: 5px;
-        height: 100%;
         padding: 10px;
 
     }
@@ -131,7 +130,9 @@
         margin-bottom: 0;
     }
     .gameOption__header{
+        width: 100%;
        font-size: 20px; 
+       text-align: center;
     }
     .shownColor{
         font-size: 80px;
@@ -145,6 +146,9 @@
     }
     .forPc{
         display: none;
+    }
+    .result__header{
+        font-size: 30px;
     }
 
     @keyframes gogogo {
