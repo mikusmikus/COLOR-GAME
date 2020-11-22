@@ -1,0 +1,38 @@
+.start__button{
+    font-size: 80px;
+    /* padding: 20px 40px; */
+    border-radius: 12px;
+    background-color: transparent;
+    color: white;
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    cursor: pointer;
+    border:none;
+    transition: text-shadow 0.3s;
+}
+.start__button:hover{
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    opacity: 0.8;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    margin: 5px;
+    font-size: 30px;
+    font-weight: 700px;
+    cursor: pointer;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    transition: opacity 0.1s;
+    outline:0;
+}
+
+.button:hover{
+    opacity: 0.8;
+}
+
+.button--game{
+    font-size: 25px;
+    padding: 5px 15px;
+}

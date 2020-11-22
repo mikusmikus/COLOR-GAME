@@ -54,6 +54,7 @@
 }
 
 .playArea__before {
+    position: relative;
     width: 550px;
     height: 500px;
     /* background-color: rgb(255, 255, 255); */
@@ -66,21 +67,6 @@
 }
 
 
-.start__button{
-    font-size: 80px;
-    /* padding: 20px 40px; */
-    border-radius: 12px;
-    background-color: transparent;
-    color: white;
-    text-shadow: 3px 3px 3px rgb(0, 0, 0);
-    cursor: pointer;
-    border:none;
-    transition: text-shadow 0.2s;
-}
-.start__button:hover{
-    text-shadow: 1px 1px 1px rgb(0, 0, 0);
-    opacity: 0.8;
-}
 
 .gameOption__header{
     display: block;
@@ -88,35 +74,16 @@
 }
 
 
-.button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    margin: 5px;
-    font-size: 30px;
-    font-weight: 700px;
-    cursor: pointer;
-    color: white;
-    text-shadow: 2px 2px 2px rgb(0, 0, 0);
-    transition: opacity 0.1s;
-}
 
-.button--game{
-    font-size: 25px;
-    padding: 5px 15px;
-}
 
-.button:hover{
-    opacity: 0.8;
-}
 .heading2 {
     display: flex;
     margin: 5px 10px;
 }
 .shownColor-wrapper{
     width: 100%;
-
 }
+
 .shownColor{
     display: block;
     font-size: 100px;
@@ -149,4 +116,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.timer-line{
+    height: 4px;
+    background-color: black;
+    width: 0%;
+    animation: timer 2s linear infinite;
+}
+
+@keyframes timer {
+    from {width: 0px}
+    to {width: 100%}
 }
