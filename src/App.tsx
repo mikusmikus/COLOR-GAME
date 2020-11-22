@@ -4,10 +4,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import 'flexboxgrid';
 import { v4 as uuidv4 } from 'uuid';
-import { ToastContainer, toast } from 'react-toastify';
 // @ts-ignore
-import press from './sounds/press.wav';
+import simpleSound from './sounds/simple.wav';
 import Button from './components/button/button';
+import Timer from './components/timer/timer';
 
 type Color = {
   id: string;
@@ -17,6 +17,17 @@ type Color = {
 };
 const colorArr = ['red', 'green', 'yellow', 'blue'];
 const counterArr = [10, 20, 40];
+
+type TimeOut = {
+  name: string;
+  speed: number;
+};
+
+const timeOutArr: TimeOut[] = [
+  { name: 'slow', speed: 3000 },
+  { name: 'medium', speed: 2000 },
+  { name: 'fast', speed: 1000 },
+];
 
 const App = () => {
   const [colors, setColors] = useState<Color[]>([]);
@@ -28,18 +39,19 @@ const App = () => {
     startButton: true,
     gameOptions: false,
     gameOptions2: false,
-    withKeyboard: false,
+    gameOptions3: false,
     withButtons: false,
+    // withKeyboard: false,
     results: false,
     startGame: false,
+    animation: false,
   });
-
   const [correctColors, setCorrectColors] = useState(0);
   const [keyPress, setKeyPress] = useState('');
   const [timeOut, setTimeOut] = useState(2000);
   const isInitialMount = useRef(true);
 
-  const audio = new Audio(press);
+  const audio = new Audio(simpleSound);
 
   const playSound = (audioFile: { play: () => void }) => {
     audioFile.play();
@@ -59,7 +71,7 @@ const App = () => {
   }, [whatWeSee.results]);
 
   useEffect(() => {
-    if (!whatWeSee.withKeyboard) {
+    if (whatWeSee.withButtons) {
       return;
     }
     if (keyPress) {
@@ -85,10 +97,6 @@ const App = () => {
 
     if (count > 0 && !clickedColorArr[count - 1]) {
       playSound(audio);
-      toast.error('missed to press any key !', {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 21800,
-      });
     }
 
     if (count < colors.length) {
@@ -101,10 +109,7 @@ const App = () => {
       }, timeOut);
     } else {
       setWhatWeSee({
-        startButton: false,
-        gameOptions: false,
-        gameOptions2: false,
-        withKeyboard: false,
+        ...whatWeSee,
         withButtons: false,
         results: true,
         startGame: false,
@@ -116,24 +121,20 @@ const App = () => {
     const copyColors = [];
     const copyColorsClicked = [];
     for (let i = 0; i < size; i++) {
-      const randomNumber = Math.floor(Math.random() * 4);
-      const randomNumber2 = Math.floor(Math.random() * 4);
+      const randomCardName = Math.floor(Math.random() * 4);
+      const randomTitleName = Math.floor(Math.random() * 4);
       copyColorsClicked.push('');
       copyColors.push({
         id: uuidv4(),
-        color: colorArr[randomNumber],
-        title: colorArr[randomNumber2],
+        color: colorArr[randomCardName],
+        title: colorArr[randomTitleName],
         show: false,
       });
     }
     setWhatWeSee({
-      startButton: false,
+      ...whatWeSee,
       gameOptions: false,
       gameOptions2: true,
-      withKeyboard: false,
-      withButtons: false,
-      results: false,
-      startGame: false,
     });
     setClickedColorArr(copyColorsClicked);
     setColors(copyColors);
@@ -145,45 +146,48 @@ const App = () => {
     setClickedColorArr(copyColorArr);
   };
 
+  const animationBeforeStart = (buttons: boolean) => {
+    setWhatWeSee({
+      ...whatWeSee,
+      gameOptions3: false,
+      animation: true,
+    });
+    setTimeout(() => {
+      setCount(0);
+      setWhatWeSee({
+        ...whatWeSee,
+        gameOptions3: false,
+        withButtons: buttons,
+        startGame: true,
+        animation: false,
+      });
+    }, 2000);
+  };
+
   return (
     <>
       <div className="background-color" />
       <div className="container header">
         <div className="row middle-xs center-xs">
-          <div className="col-xs-8 col-xs-offset-2">
+          <div className="col-xs-12">
             <h1 className="header__heading">Welcome to Color game</h1>
-          </div>
-          <div className="col-xs-2">
-            {/* <div className="header__button-wrapper">
-              <button type="button" className="header__button">
-                LV
-              </button>
-              <button type="button" className="header__button">
-                EN
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
-
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
             {!whatWeSee.startGame ? (
-              <div className="playArea__before">
+              <div className="playArea">
                 {whatWeSee.startButton && (
                   <Button
                     className="start__button"
                     label="START"
                     buttonClickHandler={() =>
                       setWhatWeSee({
+                        ...whatWeSee,
                         startButton: false,
                         gameOptions: true,
-                        gameOptions2: false,
-                        withKeyboard: false,
-                        withButtons: false,
-                        results: false,
-                        startGame: false,
                       })
                     }
                   />
@@ -203,40 +207,39 @@ const App = () => {
                 )}
                 {whatWeSee.gameOptions2 && (
                   <>
+                    <h1 className="gameOption__header">Select game speed</h1>
+                    {timeOutArr.map(({ name, speed }) => (
+                      <Button
+                        className="button"
+                        key={name}
+                        label={`${name}: ${speed / 1000} sec`}
+                        buttonClickHandler={() => {
+                          setTimeOut(speed);
+                          setWhatWeSee({
+                            ...whatWeSee,
+                            gameOptions3: true,
+                            gameOptions2: false,
+                          });
+                        }}
+                      />
+                    ))}
+                  </>
+                )}
+
+                {whatWeSee.gameOptions3 && (
+                  <>
                     <h1 className="gameOption__header">
                       Select keyboard or mouse to play with
                     </h1>
                     <Button
                       className="button"
                       label="mouse"
-                      buttonClickHandler={() => {
-                        setCount(0);
-                        setWhatWeSee({
-                          startButton: false,
-                          gameOptions: false,
-                          gameOptions2: false,
-                          withKeyboard: false,
-                          withButtons: true,
-                          results: false,
-                          startGame: true,
-                        });
-                      }}
+                      buttonClickHandler={() => animationBeforeStart(true)}
                     />
                     <Button
                       className="button"
                       label="keyboard"
-                      buttonClickHandler={() => {
-                        setCount(0);
-                        setWhatWeSee({
-                          startButton: false,
-                          gameOptions: false,
-                          gameOptions2: false,
-                          withKeyboard: true,
-                          withButtons: false,
-                          results: false,
-                          startGame: true,
-                        });
-                      }}
+                      buttonClickHandler={() => animationBeforeStart(false)}
                     />
                     {colorArr.map((color) => (
                       <span key={color} style={{ color }} className="heading2">
@@ -245,6 +248,13 @@ const App = () => {
                     ))}
                   </>
                 )}
+                {whatWeSee.animation && (
+                  <span className="animation">
+                    <span style={{ color: 'yellow' }}>Let's</span>
+                    <span style={{ color: 'red' }}>GO!!!</span>
+                  </span>
+                )}
+
                 {whatWeSee.results && (
                   <div>
                     <h2 className="result__header">
@@ -258,13 +268,9 @@ const App = () => {
                         label="play again!"
                         buttonClickHandler={() => {
                           setWhatWeSee({
+                            ...whatWeSee,
                             startButton: true,
-                            gameOptions: false,
-                            gameOptions2: false,
-                            withKeyboard: false,
-                            withButtons: false,
                             results: false,
-                            startGame: false,
                           });
                         }}
                       />
@@ -273,33 +279,10 @@ const App = () => {
                 )}
               </div>
             ) : (
-              <div className="playArea__before playArea">
+              <div className="playArea">
                 {whatWeSee.withButtons ? (
                   <div>
-                    {colorArr.map((color) => (
-                      <Button
-                        key={color}
-                        label={color}
-                        className="button button--game"
-                        buttonClickHandler={() => {
-                          changeColorArr(color);
-                        }}
-                      />
-                    ))}
                     <div className="shownColor-wrapper">
-                      <div
-                        className="timer-line"
-                        style={{
-                          animation: `timer ${timeOut / 1000}s linear infinite`,
-                          backgroundColor: shownColor,
-                        }}
-                      />
-                      <span
-                        className="shownColor"
-                        style={{ color: shownColor }}
-                      >
-                        {shownTitle}
-                      </span>
                       <div className="shownColor__footer">
                         <span>
                           color {count + 1}/{clickedColorArr.length}
@@ -310,29 +293,36 @@ const App = () => {
                           buttonClickHandler={() => {
                             setTimeout(() => {
                               setWhatWeSee({
+                                ...whatWeSee,
                                 startButton: true,
-                                gameOptions: false,
-                                gameOptions2: false,
-                                withKeyboard: false,
                                 withButtons: false,
-                                results: false,
                                 startGame: false,
                               });
                             }, 300);
                           }}
                         />
                       </div>
+                      <span
+                        className="shownColor"
+                        style={{ color: shownColor }}
+                      >
+                        {shownTitle}
+                      </span>
+                      <Timer timeOut={timeOut} shownColor={shownColor} />
                     </div>
+                    {colorArr.map((color) => (
+                      <Button
+                        key={color}
+                        label={color}
+                        className="button button--game"
+                        buttonClickHandler={() => {
+                          changeColorArr(color);
+                        }}
+                      />
+                    ))}
                   </div>
                 ) : (
                   <div className="shownColor-wrapper">
-                    <div
-                      className="timer-line"
-                      style={{
-                        animation: `timer ${timeOut / 1000}s linear infinite`,
-                        backgroundColor: shownColor,
-                      }}
-                    />
                     <p>
                       you pressed:{' '}
                       <span className="keyPress" style={{ color: shownColor }}>
@@ -343,6 +333,7 @@ const App = () => {
                     <span className="shownColor" style={{ color: shownColor }}>
                       {shownTitle}
                     </span>
+                    <Timer timeOut={timeOut} shownColor={shownColor} />
                     <div className="shownColor__footer">
                       <span>
                         color {count + 1}/{clickedColorArr.length}
@@ -353,12 +344,9 @@ const App = () => {
                         buttonClickHandler={() => {
                           setTimeout(() => {
                             setWhatWeSee({
+                              ...whatWeSee,
                               startButton: true,
-                              gameOptions: false,
-                              gameOptions2: false,
-                              withKeyboard: false,
                               withButtons: false,
-                              results: false,
                               startGame: false,
                             });
                           }, 300);
@@ -371,7 +359,6 @@ const App = () => {
             )}
           </div>
         </div>
-        {/* <ToastContainer /> */}
       </div>
     </>
   );

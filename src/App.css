@@ -24,36 +24,11 @@
     color: white;
     font-size: 50px;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 30px;
     text-transform: uppercase;
 }
 
-.header__button-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    margin-right: 20px;
-}
-
-.header__button {
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: transparent;
-    color: black;
-    font-weight: 700;
-    border: none;
-    max-width: 50px;
-    font-weight: 30px;
-}
-
-.navBar__button:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-}
-
-.playArea__before {
+.playArea{
     position: relative;
     width: 550px;
     height: 500px;
@@ -72,8 +47,6 @@
     display: block;
     text-align: center;
 }
-
-
 
 
 .heading2 {
@@ -107,9 +80,6 @@
     display: flex;
     justify-content: center;
 }
-.button--result{
-    background: transparent;
-}
 
 .shownColor__footer{
     width: 100%;
@@ -118,14 +88,46 @@
     align-items: center;
 }
 
-.timer-line{
-    height: 4px;
-    background-color: black;
-    width: 0%;
-    animation: timer 2s linear infinite;
+.animation{
+    position: absolute;
+    color: red;
+    font-size: 100px;
+    z-index: 999;
+    transform: scale(0);
+    animation: gogogo 2s ease ;
 }
 
-@keyframes timer {
-    from {width: 0px}
-    to {width: 100%}
+@keyframes gogogo {
+
+    /* 50% {
+        transform: scale(1.5);
+    } */
+    80% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .playArea{
+        width: 100%;
+        margin-top: 10px;
+        height: 100%;
+        padding: 10px;
+    }
+    .button{
+        width: 100%;
+    }
+    .header__heading {
+        font-size: 25px;
+    }
+    .gameOption__header{
+       font-size: 20px; 
+    }
+    .shownColor{
+        font-size: 80px;
+        margin: 15px;  
+    }
 }
