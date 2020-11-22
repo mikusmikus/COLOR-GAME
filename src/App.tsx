@@ -167,117 +167,123 @@ const App = () => {
   return (
     <>
       <div className="background-color" />
-      <div className="container header">
-        <div className="row middle-xs center-xs">
-          <div className="col-xs-12">
-            <h1 className="header__heading">Welcome to Color game</h1>
-          </div>
-        </div>
-      </div>
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
             {!whatWeSee.startGame ? (
-              <div className="playArea">
-                {whatWeSee.startButton && (
-                  <Button
-                    className="start__button"
-                    label="START"
-                    buttonClickHandler={() =>
-                      setWhatWeSee({
-                        ...whatWeSee,
-                        startButton: false,
-                        gameOptions: true,
-                      })
-                    }
-                  />
-                )}
-                {whatWeSee.gameOptions && (
-                  <>
-                    <h1 className="gameOption__header">Select game size</h1>
-                    {counterArr.map((counter) => (
-                      <Button
-                        className="button"
-                        key={counter}
-                        label={`${counter} color game`}
-                        buttonClickHandler={() => GenerateColorArray(counter)}
-                      />
-                    ))}
-                  </>
-                )}
-                {whatWeSee.gameOptions2 && (
-                  <>
-                    <h1 className="gameOption__header">Select game speed</h1>
-                    {timeOutArr.map(({ name, speed }) => (
-                      <Button
-                        className="button"
-                        key={name}
-                        label={`${name}: ${speed / 1000} sec`}
-                        buttonClickHandler={() => {
-                          setTimeOut(speed);
-                          setWhatWeSee({
-                            ...whatWeSee,
-                            gameOptions3: true,
-                            gameOptions2: false,
-                          });
-                        }}
-                      />
-                    ))}
-                  </>
-                )}
-
-                {whatWeSee.gameOptions3 && (
-                  <>
-                    <h1 className="gameOption__header">
-                      Select keyboard or mouse to play with
-                    </h1>
-                    <Button
-                      className="button"
-                      label="mouse"
-                      buttonClickHandler={() => animationBeforeStart(true)}
-                    />
-                    <Button
-                      className="button"
-                      label="keyboard"
-                      buttonClickHandler={() => animationBeforeStart(false)}
-                    />
-                    {colorArr.map((color) => (
-                      <span key={color} style={{ color }} className="heading2">
-                        {`press ${color.substring(0, 1)} = ${color}`}
-                      </span>
-                    ))}
-                  </>
-                )}
-                {whatWeSee.animation && (
-                  <span className="animation">
-                    <span style={{ color: 'yellow' }}>Let's</span>
-                    <span style={{ color: 'red' }}>GO!!!</span>
-                  </span>
-                )}
-
-                {whatWeSee.results && (
-                  <div>
-                    <h2 className="result__header">
-                      {!correctColors && 'sorry... 0 points'}
-                      {correctColors === 1 && 'you got 1 point'}
-                      {correctColors > 1 && `you got ${correctColors} points`}
-                    </h2>
-                    <div className="result__button-wrapper">
-                      <Button
-                        className="button button--result"
-                        label="play again!"
-                        buttonClickHandler={() => {
-                          setWhatWeSee({
-                            ...whatWeSee,
-                            startButton: true,
-                            results: false,
-                          });
-                        }}
-                      />
+              <>
+                <div className="header">
+                  <div className="row middle-xs center-xs">
+                    <div className="col-xs-12">
+                      <h1 className="header__heading">Welcome to Color game</h1>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+                <div className="playArea">
+                  {whatWeSee.startButton && (
+                    <Button
+                      className="start__button"
+                      label="START"
+                      buttonClickHandler={() =>
+                        setWhatWeSee({
+                          ...whatWeSee,
+                          startButton: false,
+                          gameOptions: true,
+                        })
+                      }
+                    />
+                  )}
+                  {whatWeSee.gameOptions && (
+                    <>
+                      <h1 className="gameOption__header">Select game size</h1>
+                      {counterArr.map((counter) => (
+                        <Button
+                          className="button"
+                          key={counter}
+                          label={`${counter} color game`}
+                          buttonClickHandler={() => GenerateColorArray(counter)}
+                        />
+                      ))}
+                    </>
+                  )}
+                  {whatWeSee.gameOptions2 && (
+                    <>
+                      <h1 className="gameOption__header">Select game speed</h1>
+                      {timeOutArr.map(({ name, speed }) => (
+                        <Button
+                          className="button"
+                          key={name}
+                          label={`${name}: ${speed / 1000} sec`}
+                          buttonClickHandler={() => {
+                            setTimeOut(speed);
+                            setWhatWeSee({
+                              ...whatWeSee,
+                              gameOptions3: true,
+                              gameOptions2: false,
+                            });
+                          }}
+                        />
+                      ))}
+                    </>
+                  )}
+
+                  {whatWeSee.gameOptions3 && (
+                    <>
+                      <h1 className="gameOption__header">
+                        Select keyboard or mouse to play with
+                      </h1>
+                      <Button
+                        className="button"
+                        label="mouse"
+                        buttonClickHandler={() => animationBeforeStart(true)}
+                      />
+                      <Button
+                        className="button"
+                        label="keyboard"
+                        buttonClickHandler={() => animationBeforeStart(false)}
+                      />
+                      {colorArr.map((color) => (
+                        <span
+                          key={color}
+                          style={{ color }}
+                          className="heading2"
+                        >
+                          {`press ${color.substring(0, 1)} = ${color}`}
+                        </span>
+                      ))}
+                    </>
+                  )}
+                  {whatWeSee.animation && (
+                    <span className="animation">
+                      <span style={{ color: 'yellow' }}>Let's</span>
+                      <span style={{ color: 'red' }}>GO!!!</span>
+                    </span>
+                  )}
+
+                  {whatWeSee.results && (
+                    <div>
+                      <h2 className="result__header">
+                        {!correctColors && 'sorry... 0 points'}
+                        {correctColors === 1 && 'you got 1 point'}
+                        {correctColors > 1 && `you got ${correctColors} points`}
+                      </h2>
+                      <div className="result__button-wrapper">
+                        <Button
+                          className="button button--result"
+                          label="play again!"
+                          buttonClickHandler={() => {
+                            setWhatWeSee({
+                              ...whatWeSee,
+                              startButton: true,
+                              results: false,
+                            });
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
             ) : (
               <div className="playArea">
                 {whatWeSee.withButtons ? (
