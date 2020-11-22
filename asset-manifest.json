@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/COLOR-GAME/static/css/main.4522b57e.chunk.css",
-    "main.js": "/COLOR-GAME/static/js/main.7c8de65a.chunk.js",
-    "main.js.map": "/COLOR-GAME/static/js/main.7c8de65a.chunk.js.map",
-    "runtime-main.js": "/COLOR-GAME/static/js/runtime-main.3cf9950f.js",
-    "runtime-main.js.map": "/COLOR-GAME/static/js/runtime-main.3cf9950f.js.map",
+    "main.css": "/COLOR-GAME/static/css/main.8ebecebe.chunk.css",
+    "main.js": "/COLOR-GAME/static/js/main.5c4304a2.chunk.js",
+    "main.js.map": "/COLOR-GAME/static/js/main.5c4304a2.chunk.js.map",
+    "runtime-main.js": "/COLOR-GAME/static/js/runtime-main.e09fe60e.js",
+    "runtime-main.js.map": "/COLOR-GAME/static/js/runtime-main.e09fe60e.js.map",
     "static/css/2.12003753.chunk.css": "/COLOR-GAME/static/css/2.12003753.chunk.css",
-    "static/js/2.1e579eb6.chunk.js": "/COLOR-GAME/static/js/2.1e579eb6.chunk.js",
-    "static/js/2.1e579eb6.chunk.js.map": "/COLOR-GAME/static/js/2.1e579eb6.chunk.js.map",
-    "static/js/3.a193ebee.chunk.js": "/COLOR-GAME/static/js/3.a193ebee.chunk.js",
-    "static/js/3.a193ebee.chunk.js.map": "/COLOR-GAME/static/js/3.a193ebee.chunk.js.map",
+    "static/js/2.7c32690d.chunk.js": "/COLOR-GAME/static/js/2.7c32690d.chunk.js",
+    "static/js/2.7c32690d.chunk.js.map": "/COLOR-GAME/static/js/2.7c32690d.chunk.js.map",
+    "static/js/3.1b87a7e6.chunk.js": "/COLOR-GAME/static/js/3.1b87a7e6.chunk.js",
+    "static/js/3.1b87a7e6.chunk.js.map": "/COLOR-GAME/static/js/3.1b87a7e6.chunk.js.map",
     "index.html": "/COLOR-GAME/index.html",
     "static/css/2.12003753.chunk.css.map": "/COLOR-GAME/static/css/2.12003753.chunk.css.map",
-    "static/css/main.4522b57e.chunk.css.map": "/COLOR-GAME/static/css/main.4522b57e.chunk.css.map",
-    "static/js/2.1e579eb6.chunk.js.LICENSE.txt": "/COLOR-GAME/static/js/2.1e579eb6.chunk.js.LICENSE.txt",
-    "static/media/press.1e149785.wav": "/COLOR-GAME/static/media/press.1e149785.wav"
+    "static/css/main.8ebecebe.chunk.css.map": "/COLOR-GAME/static/css/main.8ebecebe.chunk.css.map",
+    "static/js/2.7c32690d.chunk.js.LICENSE.txt": "/COLOR-GAME/static/js/2.7c32690d.chunk.js.LICENSE.txt",
+    "static/media/simple.dafe14e1.wav": "/COLOR-GAME/static/media/simple.dafe14e1.wav"
   },
   "entrypoints": [
-    "static/js/runtime-main.3cf9950f.js",
+    "static/js/runtime-main.e09fe60e.js",
     "static/css/2.12003753.chunk.css",
-    "static/js/2.1e579eb6.chunk.js",
-    "static/css/main.4522b57e.chunk.css",
-    "static/js/main.7c8de65a.chunk.js"
+    "static/js/2.7c32690d.chunk.js",
+    "static/css/main.8ebecebe.chunk.css",
+    "static/js/main.5c4304a2.chunk.js"
   ]
 }
