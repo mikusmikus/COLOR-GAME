@@ -238,7 +238,7 @@ const App = () => {
                         buttonClickHandler={() => animationBeforeStart(true)}
                       />
                       <Button
-                        className="button"
+                        className="button disabled"
                         label="keyboard"
                         buttonClickHandler={() => animationBeforeStart(false)}
                       />
@@ -246,7 +246,7 @@ const App = () => {
                         <span
                           key={color}
                           style={{ color }}
-                          className="heading2"
+                          className="heading2 disabled"
                         >
                           {`press ${color.substring(0, 1)} = ${color}`}
                         </span>
