@@ -7,6 +7,7 @@ type Props = {
 };
 
 const Timer:FC<Props> = ({ timeOut, shownColor }) => {
+
   return (
     <div
       className="timer-line"

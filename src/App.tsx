@@ -9,14 +9,16 @@ import simpleSound from './sounds/simple.wav';
 import Button from './components/button/button';
 import Timer from './components/timer/timer';
 
+const colorArr = ['red', 'green', 'yellow', 'blue'];
+const counterArr = [10, 20, 40];
+
+
 type Color = {
   id: string;
   color: string;
   title: string;
   show: boolean;
 };
-const colorArr = ['red', 'green', 'yellow', 'blue'];
-const counterArr = [10, 20, 40];
 
 type TimeOut = {
   name: string;
@@ -104,6 +106,7 @@ const App = () => {
       setShowTitle(colors[count].title);
       setShowColor(colors[count].color);
       setKeyPress('');
+
       setTimeout(() => {
         setCount(count + 1);
       }, timeOut);
@@ -314,7 +317,10 @@ const App = () => {
                       >
                         {shownTitle}
                       </span>
-                      <Timer timeOut={timeOut} shownColor={shownColor} />
+                      <Timer
+                        timeOut={timeOut}
+                        shownColor={shownColor}
+                      />
                     </div>
                     {colorArr.map((color) => (
                       <Button
@@ -339,7 +345,10 @@ const App = () => {
                     <span className="shownColor" style={{ color: shownColor }}>
                       {shownTitle}
                     </span>
-                    <Timer timeOut={timeOut} shownColor={shownColor} />
+                    <Timer
+                      timeOut={timeOut}
+                      shownColor={shownColor}
+                    />
                     <div className="shownColor__footer">
                       <span>
                         color {count + 1}/{clickedColorArr.length}

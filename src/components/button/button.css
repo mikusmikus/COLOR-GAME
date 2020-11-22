@@ -33,6 +33,9 @@
 .button:hover{
     opacity: 0.8;
 }
+button:active{
+    background-color: rgb(143, 143, 143);
+}
 
 .button--game{
     font-size: 25px;
