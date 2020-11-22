@@ -231,28 +231,38 @@ const App = () => {
 
                   {whatWeSee.gameOptions3 && (
                     <>
-                      <h1 className="gameOption__header">
-                        Select keyboard or mouse to play with
-                      </h1>
-                      <Button
-                        className="button"
-                        label="mouse"
-                        buttonClickHandler={() => animationBeforeStart(true)}
-                      />
-                      <Button
-                        className="button disabled"
-                        label="keyboard"
-                        buttonClickHandler={() => animationBeforeStart(false)}
-                      />
-                      {colorArr.map((color) => (
-                        <span
-                          key={color}
-                          style={{ color }}
-                          className="heading2 disabled"
-                        >
-                          {`press ${color.substring(0, 1)} = ${color}`}
-                        </span>
-                      ))}
+                      <div className="playArea forPc">
+                        <h1 className="gameOption__header">
+                          Select keyboard or mouse to play with
+                        </h1>
+                        <Button
+                          className="button"
+                          label="mouse"
+                          buttonClickHandler={() => animationBeforeStart(true)}
+                        />
+                        <Button
+                          className="button"
+                          label="keyboard"
+                          buttonClickHandler={() => animationBeforeStart(false)}
+                        />
+                        {colorArr.map((color) => (
+                          <span
+                            key={color}
+                            style={{ color }}
+                            className="heading2"
+                          >
+                            {`press ${color.substring(0, 1)} = ${color}`}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="forMobile">
+                        <h1 className="gameOption__header">Are You ready?</h1>
+                        <Button
+                          className="button"
+                          label="Start the game"
+                          buttonClickHandler={() => animationBeforeStart(true)}
+                        />
+                      </div>
                     </>
                   )}
                   {whatWeSee.animation && (
